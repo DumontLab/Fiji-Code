@@ -8,7 +8,7 @@
  * Then measures profile intensity along a line and saves it as a csv.
  * 
  * Requirements to run:
- * Need to have an image already open of fiji
+ * Need to have an image already open on fiji
  */
 
 
