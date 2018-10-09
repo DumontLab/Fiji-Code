@@ -7,6 +7,8 @@
  * Adds a scale bar to the open image and saves it as a tif.
  * Then measures profile intensity along a line and saves it as a csv.
  * 
+ * Requirements to run:
+ * Need to have an image already open of fiji
  */
 
 
