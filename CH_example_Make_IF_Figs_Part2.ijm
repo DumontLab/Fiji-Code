@@ -1,9 +1,20 @@
 
 macro "IF Figures Part2" {
+// this is part 2 of a simple example FIJI/ImageJ macro starts with separate MetaMorph zStacks (one for each channel)
+//and quickly outputs and saves consistently scaled, pseudo-colored, and z-projected figure panels.
+
+// First, run part 1, so you have a merged and scaled zStack (of multiple channels) open.
+// In this example, you will manually look at that zStack and choose what z slices you want
+// included in the Z project.
+
 run("Z Project...");
 t=getTitle;
 print(t);
 saveAs("Tiff");
+
+// now, make the combinations of channels that you want to output.  In my case, I wanted the 
+// combinations below.  I'm also converting to the image type I want, and adding things
+// like "tubGFP" to the end of the image names before I save them.
 
 run("Make Substack...", "channels=1,3");
 rename(""+t+"DNAtub");
