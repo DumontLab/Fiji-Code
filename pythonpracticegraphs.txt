@@ -1,0 +1,71 @@
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+
+
+onco = pd.read_csv('Phenotype distribution oncogenes.csv')
+
+
+X = onco.PHENOTYPE
+oncogenes = onco.iloc[:,1:6]
+PURO = onco.PURO
+MYC = onco.MYC
+HRAS = onco.HRAS
+CYCD = onco.CYCD
+AURKB = onco.AURKB
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+plt.style.use('seaborn')
+print(plt.style.available)
+
+# Phenotype Distribution
+def phenotype_distrib():   
+    df = pd.DataFrame(np.c_[oncogenes], index = X,
+                      columns = ['PURO', 'MYC', 'HRAS', 'CYCD', 'AURKB'])
+    
+    fig, (ax, ax2) = plt.subplots(2, 1, gridspec_kw = {'height_ratios':[1, 3]}, sharex=True, sharey=False)
+    
+    top = df.plot.bar(ax=ax, width = 0.7, 
+         color = ('gray','blue','magenta','green','darkorange'), 
+         legend=False,
+         )
+    
+    bottom = df.plot.bar(ax=ax2, width = 0.7, 
+         color = ('gray','blue','magenta','green','darkorange'),
+         legend=False
+         )
+    
+    
+    ax.set_ylim(40,100) 
+    ax2.set_ylim(0,20)
+    
+    ax.spines['bottom'].set_visible(False)
+    ax2.spines['top'].set_visible(False)
+    ax.xaxis.tick_top()
+    ax.tick_params(labeltop='off')  # don't put tick labels at the top
+    ax2.xaxis.tick_bottom()
+    
+    fig.suptitle('Spindle Polarity and Centriole Phenotypes: \n MCF10A Oncogene Lines', fontsize = 16)
+   
+    plt.xlabel("Phenotype (# of poles, total # of centrioles)", size = 14)
+    plt.ylabel("% of cells", size =14)
+
+    ax2.yaxis.set_label_coords(-0.06, 0.7)
+       
+    plt.xticks(fontsize=12)
+    plt.legend(fontsize = 14)
+    
+phenotype_distrib()
+
+
+
+# Stacked bar graph
+onco = pd.read_csv('PhenotypeStacked.csv')
+
+def stacked_bar():
+    
+    
